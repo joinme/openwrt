@@ -5,11 +5,16 @@
 #
 # Copyright (C) 2020 KFERMercer
 #
-name: OpenWrt-CI
+name: build h351-n
 
 on:
-  schedule:
-    - cron: 0 20 * * *
+  # schedule:
+  #   - cron: 0 20 * * *
+  push:
+    # 只在你的 H351-N 开发分支提交代码时自动编译
+    branches: [ openwrt-24.10_h351-n ]
+    # 手动触发时，默认使用当前默认分支（不用选）
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -26,6 +31,10 @@ jobs:
       - name: Space cleanup and Initialization environment
         env:
           DEBIAN_FRONTEND: noninteractive
+          # TNAME: "NEWIFI-MINI MI-MINI MI-3 OYE-001 YK-L1 JCG-AC836M 5K-W20"
+          # TNAME: "NEWIFI-MINI YK-L1"
+          TNAME: "h351-n"
+          
         run: |
           docker image prune -f
           sudo -E rm -rf /usr/share/dotnet /etc/mysql /etc/php /etc/apt/sources.list.d /usr/local/lib/android
@@ -63,8 +72,16 @@ jobs:
           ./scripts/feeds install -a
 
       - name: Generate configuration file
-        run: make defconfig
-
+        run: |
+          # make defconfig
+          for m in $TNAME;
+          do
+          if [ ! -f configs/templates/config.$m ] ; then
+          echo "configs/templates/config.$m not found "
+          exit 1
+          fi
+          cp -f configs/templates/config.$m .config
+          
       - name: Download packages
         run: make download -j16
 
