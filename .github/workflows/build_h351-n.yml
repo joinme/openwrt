@@ -85,11 +85,11 @@ jobs:
           #     cp -f configs/templates/config.$m .config
           # done
 
-          if [ ! -f configs/templates/config.$m ]; then
-            echo "configs/templates/config.$m not found "
+          if [ ! -f configs/templates/config.$TNAME ]; then
+            echo "configs/templates/config.$TNAME not found "
             exit 1
           fi
-          cp -f configs/templates/config.$m .config
+          cp -f configs/templates/config.$TNAME .config
           
       - name: Download packages
        # run: make download -j16
