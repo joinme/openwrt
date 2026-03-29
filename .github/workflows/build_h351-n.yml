@@ -50,6 +50,9 @@ jobs:
 
       - name: Checkout OpenWrt
         uses: actions/checkout@v4
+        # with:
+        #   ref: openwrt-24.10-h351n  # 强制指定分支
+        #   fetch-depth: 0
 
       - name: Free Disk Space (Ubuntu)
         uses: jlumbroso/free-disk-space@main
@@ -74,14 +77,10 @@ jobs:
       - name: Generate configuration file
         run: |
           # make defconfig
-          for m in $TNAME;
-          do
-          if [ ! -f configs/templates/config.$m ] ; then
-          echo "configs/templates/config.$m not found "
-          exit 1
-          fi
-          cp -f configs/templates/config.$m .config
-          
+          for m in $TNAME; do
+              [ ! -f "configs/templates/config.$m" ] && { echo "configs/templates/config.$m not found "; exit 1; }
+              cp -f configs/templates/config.$m .config
+          done
       - name: Download packages
         run: make download -j16
 
