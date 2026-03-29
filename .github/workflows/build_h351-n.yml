@@ -81,7 +81,7 @@ jobs:
         env:
          TNAME: "h351-n"
         run: |
-          make defconfig
+          # make defconfig
           # for m in $TNAME; do
           #     [ ! -f "configs/templates/config.$m" ] && { echo "configs/templates/config.$m not found "; exit 1; }
           #     cp -f configs/templates/config.$m .config
