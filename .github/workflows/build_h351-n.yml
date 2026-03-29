@@ -79,11 +79,18 @@ jobs:
 
       - name: Generate configuration file
         run: |
-          # make defconfig
-          for m in $TNAME; do
-              [ ! -f "configs/templates/config.$m" ] && { echo "configs/templates/config.$m not found "; exit 1; }
-              cp -f configs/templates/config.$m .config
-          done
+          make defconfig
+          # for m in $TNAME; do
+          #     [ ! -f "configs/templates/config.$m" ] && { echo "configs/templates/config.$m not found "; exit 1; }
+          #     cp -f configs/templates/config.$m .config
+          # done
+
+          if [ ! -f configs/templates/config.$m ]; then
+            echo "configs/templates/config.$m not found "
+            exit 1
+          fi
+          cp -f configs/templates/config.$m .config
+          
       - name: Download packages
        # run: make download -j16
         run: make download
