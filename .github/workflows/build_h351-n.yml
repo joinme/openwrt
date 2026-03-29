@@ -78,6 +78,7 @@ jobs:
           ./scripts/feeds install -a
 
       - name: Generate configuration file
+        TNAME: "h351-n"
         run: |
           make defconfig
           # for m in $TNAME; do
