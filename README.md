@@ -48,19 +48,33 @@ make4.1+ perl python3.7+ rsync subversion unzip which
 ```
 
 ### Quickstart
+```
+如用 wsl,
+1. 首先 cd ~ 进入linux文件系统中操作，不要使用 /mnt 开头的 win目录，
+2. 其次执行 PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin 避免win中的目录空格影响到下面的操作
 
-1. Run `./scripts/feeds update -a` to obtain all the latest package definitions
-   defined in feeds.conf / feeds.conf.default
+git clone
+# make distclean 清空所有构建后的内容
+./scripts/feeds update -a
+./scripts/feeds install -a
+make menuconfig
+make download  -j$(nproc)     //觉得不稳定的话 可改为单线程下载 make download
+make V=s -j$(nproc)
+```
+说明：
+1. make V=s -j$(nproc) 以cpu核心数量作为并行编译线程数编译时，如果编译出现错误中断，只能看到大概的错误信息，继续 执行 make V=s -j1  单线程编译就能出现具体的错误信息了
 
-2. Run `./scripts/feeds install -a` to install symlinks for all obtained
-   packages into package/feeds/
+2. 每次出错，修改之后，看视频可以删除 .config 文件， 重新执行 make menuconfig ， 继续单线程编译  make V=s -j1 
 
-3. Run `make menuconfig` to select your preferred configuration for the
-   toolchain, target system & firmware packages.
+3. 最终编译出来的文件在  bin/targets/breed-name/soc-name/ 中，例如 bin/targets/ramips/mt7620/
 
-4. Run `make` to build your firmware. This will download all sources, build the
-   cross-compile toolchain and then cross-compile the GNU/Linux kernel & all chosen
-   applications for your target system.
+4. 如需要重新配置再编译
+   ```
+   rm -rf .config
+   make menuconfig
+   make V=s -j$(nproc)
+   ```
+
 
 ### Related Repositories
 
@@ -106,3 +120,4 @@ For a list of supported devices see the [OpenWrt Hardware Database](https://open
 ## License
 
 OpenWrt is licensed under GPL-2.0
+
