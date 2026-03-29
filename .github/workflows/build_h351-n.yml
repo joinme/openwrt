@@ -33,7 +33,7 @@ jobs:
           DEBIAN_FRONTEND: noninteractive
           # TNAME: "NEWIFI-MINI MI-MINI MI-3 OYE-001 YK-L1 JCG-AC836M 5K-W20"
           # TNAME: "NEWIFI-MINI YK-L1"
-          TNAME: "h351-n"
+          # TNAME: "h351-n"
           
         run: |
           docker image prune -f
@@ -78,7 +78,8 @@ jobs:
           ./scripts/feeds install -a
 
       - name: Generate configuration file
-        TNAME: "h351-n"
+        env:
+         TNAME: "h351-n"
         run: |
           make defconfig
           # for m in $TNAME; do
