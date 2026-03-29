@@ -86,8 +86,7 @@ jobs:
           #     [ ! -f "configs/templates/config.$m" ] && { echo "configs/templates/config.$m not found "; exit 1; }
           #     cp -f configs/templates/config.$m .config
           # done
-
-          if [ ! -f configs/templates/config.$TNAME ]; then
+          if [ ! -f config/templates/config.$TNAME ]; then
             echo "config/templates/config.$TNAME not found "
             exit 1
           fi
