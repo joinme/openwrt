@@ -1535,13 +1535,13 @@ endef
 TARGET_DEVICES += zbtlink_zbt-we2026
 
 define Device/100mi_h351-n
-#  DTS := mt7620a_100mi_h351-n
+  DTS := mt7620a_100mi_h351-n
   SOC := mt7620a
-#  DEVICE_TITLE := 100MI NETBOX H351-N
-  IMAGE_SIZE := 16064k
+  IMAGE_SIZE := 16121856
   DEVICE_VENDOR := 100MI
   DEVICE_MODEL :=  H351-N
-  DEVICE_VARIANT := 16M
+  #   DEVICE_VARIANT := 16M
+  #  DEVICE_TITLE := 100MI H351-N
   DEVICE_PACKAGES := kmod-mt76x2 kmod-usb2 kmod-usb-ohci kmod-sdhci-mt7620 kmod-usb-ledtrig-usbport kmod-mmc-mtk
   SUPPORTED_DEVICES += h351-n
 endef

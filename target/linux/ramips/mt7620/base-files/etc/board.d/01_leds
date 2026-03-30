@@ -69,10 +69,6 @@ dlink,dwr-116-a1|\
 head-weblink,hdrm200|\
 ohyeah,oy-0001|\
 planex,mzk-ex300np|\
-100mi,h351-n)
-	set_wifi_led "$board:green:wlan2g"
-	set_usb_led "$board:green:usb"
-	;;
 zbtlink,zbt-we826-16m|\
 zbtlink,zbt-we826-32m|\
 zbtlink,zbt-wr8305rt|\
@@ -81,6 +77,10 @@ zyxel,keenetic-omni|\
 zyxel,keenetic-omni-ii|\
 zyxel,keenetic-viva)
 	ucidef_set_led_netdev "wifi_led" "wifi" "green:wifi" "wlan0"
+	;;
+100mi,h351-n)
+	set_wifi_led "$board:green:wlan2g"
+	set_usb_led "$board:green:usb"
 	;;
 dlink,dwr-118-a1)
 	ucidef_set_led_switch "lan" "lan" "green:lan" "switch0" "0x1f"
