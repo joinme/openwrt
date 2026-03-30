@@ -103,7 +103,7 @@ jobs:
             exit 1
           fi
           cp -f config/templates/config.$TNAME .config
-          
+          make olddefconfig
       - name: Download packages
        # run: make download -j16 || make download -j1 V=s
         # run: make download
