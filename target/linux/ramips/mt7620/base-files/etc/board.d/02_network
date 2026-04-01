@@ -319,7 +319,6 @@ ramips_setup_macs()
 	zbtlink,zbt-ape522ii|\
 	zbtlink,zbt-wa05|\
 	zbtlink,zbt-we2026|\
-	100mi,h351-n|\
 	zbtlink,zbt-we826-16m|\
 	zbtlink,zbt-we826-32m|\
 	zbtlink,zbt-we826-e|\
@@ -328,6 +327,7 @@ ramips_setup_macs()
 		;;
 	alfa-network,ac1200rm|\
 	dlink,dir-810l|\
+	100mi,h351-n|\
 	trendnet,tew-810dr)
 		wan_mac=$(macaddr_add "$(mtd_get_mac_binary factory 0x28)" 1)
 		;;
