@@ -1552,11 +1552,14 @@ define Device/100mi_h351-n
   SOC := mt7620a
   DTS := mt7620a_100mi_h351-n
   BLOCKSIZE := 64k
+  PAGESIZE := 1
   IMAGE_SIZE := 16064k
   DEVICE_VENDOR := 100MI
   DEVICE_MODEL := H351-N
   DEVICE_VARIANT := 16M
-  DEVICE_PACKAGES := kmod-mt76x2 kmod-usb2 kmod-usb-ohci kmod-sdhci-mt7620 kmod-usb-ledtrig-usbport kmod-mmc-mtk
+  DEVICE_PACKAGES := kmod-rt2800-soc kmod-rt2800-mmio kmod-rt2x00-lib \
+    kmod-rt2x00-mmio rt2800-pci-firmware kmod-usb2 kmod-usb-ohci \
+    kmod-sdhci-mt7620 kmod-usb-ledtrig-usbport kmod-mmc-mtk
   SUPPORTED_DEVICES += h351-n
 endef
 TARGET_DEVICES += 100mi_h351-n
