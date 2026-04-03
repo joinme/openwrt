@@ -1,0 +1,13 @@
+#!/bin/sh
+# WiFi 默认配置 - 首次启动自动设置SSID和密码，执行一次后自动删除
+
+# 启用无线设备（默认是关闭的）
+uci set wireless.radio0.disabled='0'
+
+# 设置SSID和加密
+uci set wireless.default_radio0.ssid='OpenWrt_H351-N'
+uci set wireless.default_radio0.encryption='psk2'
+uci set wireless.default_radio0.key='1234567890'
+
+uci commit wireless
+exit 0

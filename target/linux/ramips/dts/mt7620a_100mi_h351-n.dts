@@ -15,6 +15,7 @@
 		led-failsafe = &led_wlan;
 		led-running = &led_wlan;
 		led-upgrade = &led_wlan;
+		label-mac-device = &ethernet;
 	};
 
 	chosen {
@@ -25,12 +26,10 @@
 		compatible = "gpio-leds";
 
 		led_wlan: wlan2g {
-		//	label = "green:wlan2g";
-		//	gpios = <&gpio3 0 GPIO_ACTIVE_LOW>;
+			label = "green:wlan-2ghz";
 			function = LED_FUNCTION_WLAN_2GHZ;
 			color = <LED_COLOR_ID_GREEN>;
 			gpios = <&gpio3 0 GPIO_ACTIVE_LOW>;
-			linux,default-trigger = "phy0tpt";
 		};
 
 		usb {
@@ -142,6 +141,7 @@
 
 &sdhci {
 	status = "okay";
+	broken-cd;
 };
 
 &ehci {
@@ -151,8 +151,8 @@
 &ohci {
 	status = "okay";
 };
-//
-// &pcie {
-//        status = "okay";
-// };
+
+ &pcie {
+        status = "okay";
+ };
 

@@ -1,0 +1,10 @@
+#!/bin/sh
+# 启用 KSMBD 文件共享服务 - 首次启动自动开启
+
+# 启用 KSMBD 服务（开机自启）
+/etc/init.d/ksmbd enable
+
+# 启动服务
+/etc/init.d/ksmbd start
+
+exit 0
